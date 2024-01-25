@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import TheAccordion from '@/components/TheAccordion.vue'
+import TheNavBar from '@/components/TheNavBar.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+	<TheNavBar />
+	<TheAccordion />
 </template>
