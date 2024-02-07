@@ -1,9 +1,9 @@
 <script setup>
+import Search from '@/components/Search.vue'
 import TheAccordion from '@/components/TheAccordion.vue'
-import TheNavBar from '@/components/TheNavBar.vue'
 </script>
 
 <template>
-	<TheNavBar />
+	<Search />
 	<TheAccordion />
 </template>

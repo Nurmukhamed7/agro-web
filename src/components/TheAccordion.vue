@@ -1,22 +1,27 @@
 <template>
-	<fwb-accordion>
-		<fwb-accordion-panel v-for="category in uniqueCategories" :key="category">
+	<fwb-accordion class="my-4">
+		<fwb-accordion-panel
+			v-for="(subcategories, category) in allCategories"
+			:key="category"
+		>
 			<fwb-accordion-header>{{ category }}</fwb-accordion-header>
-			<fwb-accordion-content
-				v-for="product in filteredProducts(category)"
-				:key="product.subcategory"
-			>
-				<router-link to="/">
-					<div class="flex gap-1">
+			<fwb-accordion-content>
+				<router-link to="/" v-for="(sub, indexSub) in subcategories" :key="sub">
+					<div
+						class="flex gap-1 pt-4"
+						:class="{
+							'border-b-2 py-4': indexSub !== subcategories.length - 1,
+						}"
+					>
 						<img
 							class="mb-2"
 							src="/images/apple.png"
 							width="24"
 							height="24"
-							alt="product.subcategory"
+							alt="product"
 						/>
 						<p class="mb-2 text-gray-500 dark:text-gray-400">
-							{{ product.subcategory }}
+							{{ sub }}
 						</p>
 					</div>
 				</router-link>
@@ -26,6 +31,7 @@
 </template>
 
 <script setup>
+import dataAgro from './../dataAgro'
 import {
 	FwbAccordion,
 	FwbAccordionContent,
@@ -33,44 +39,18 @@ import {
 	FwbAccordionPanel,
 } from 'flowbite-vue'
 
-const products = [
-	{
-		category: 'Семена овощей',
-		subcategory: 'Семена томата',
-		title: 'Ольга F1',
-		description: 'тут какой то текст',
-		priceWholesale: 9500,
-		priceRetail: 9000,
-		manufacturer: 'Vilmorin - Франция',
-		packaging: '1000 семян',
-		image: '/images/tomatoes.jpg',
-	},
-	{
-		category: 'Семена овощей',
-		subcategory: 'Семена огурца',
-		title: 'Вар F1',
-		description: 'тут какой то текст',
-		priceWholesale: 92500,
-		priceRetail: 1000,
-		manufacturer: 'Vilmorin - Франция',
-		packaging: '1000 семян',
-		image: '/images/cucumber.jpg',
-	},
-	{
-		category: 'Семена кормовых',
-		subcategory: 'Семена кормовой кукурузы',
-		title: 'Алтын 739',
-		description: 'Для производства зерна и силоса',
-		priceWholesale: 43800,
-		priceRetail: 45000,
-		manufacturer: 'Будан - Казахстан',
-		packaging: '1000 семян',
-		image: '/images/cucumber.jpg',
-	},
-]
+const allCategories = dataAgro.reduce((acc, item) => {
+	console.log(item.categories)
+	if (!acc[item.categories]) {
+		acc[item.categories] = new Set([item.subcategories])
+	} else {
+		acc[item.categories].add(item.subcategories)
+	}
 
-const uniqueCategories = [...new Set(products.map(product => product.category))]
-const filteredProducts = category => {
-	return products.filter(product => product.category === category)
+	return acc
+}, {})
+
+for (const category in allCategories) {
+	allCategories[category] = Array.from(allCategories[category])
 }
 </script>
