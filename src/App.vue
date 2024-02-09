@@ -5,7 +5,9 @@ import TheFooter from './components/TheFooter.vue'
 
 <template>
 	<TheNavBar />
-	<RouterView />
+	<div class="container mx-auto">
+		<RouterView />
+	</div>
 	<TheFooter />
 </template>
 
