@@ -14,6 +14,22 @@
 					class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
 				>
 					<div class="mb-2 flex justify-between">
+						<fwb-input
+							type="name"
+							v-model="name"
+							placeholder="Иван"
+							label="Ваше имя"
+						/>
+					</div>
+					<div class="mb-2 flex justify-between">
+						<fwb-input
+							type="number"
+							v-model="phoneNumber"
+							placeholder="8-777-777-77-77"
+							label="Ваш номер телефона"
+						/>
+					</div>
+					<div class="mb-2 flex justify-between">
 						<p class="text-gray-700">Товаров:</p>
 						<p class="text-gray-700">12 шт.</p>
 					</div>
@@ -37,6 +53,7 @@
 
 <script setup>
 import BucketItem from '@/components/bucket/BucketItem.vue'
+import { FwbInput } from 'flowbite-vue'
 </script>
 
 <style lang="scss" scoped></style>
