@@ -9,8 +9,5 @@ import SubcategoryItem from '@/components/subcategories/SubcategoryItem.vue'
 		<SubcategoryItem></SubcategoryItem>
 		<SubcategoryItem></SubcategoryItem>
 		<SubcategoryItem></SubcategoryItem>
-		<!-- <CardItem></CardItem>
-		<CardItem></CardItem>
-		<CardItem></CardItem> -->
 	</div>
 </template>

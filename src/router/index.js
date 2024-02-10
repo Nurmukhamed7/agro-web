@@ -31,6 +31,11 @@ const router = createRouter({
 			component: () => import('../views/ProductDetail.vue'),
 		},
 		{
+			path: '/bucket',
+			name: 'bucket',
+			component: () => import('../views/Bucket.vue'),
+		},
+		{
 			path: '/admin',
 			name: 'admin',
 			component: () => import('../views/AdminView.vue'),
