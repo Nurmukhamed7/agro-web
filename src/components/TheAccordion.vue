@@ -6,7 +6,11 @@
 		>
 			<fwb-accordion-header>{{ category }}</fwb-accordion-header>
 			<fwb-accordion-content>
-				<router-link to="/" v-for="(sub, indexSub) in subcategories" :key="sub">
+				<router-link
+					to="/categories"
+					v-for="(sub, indexSub) in subcategories"
+					:key="sub"
+				>
 					<div
 						class="flex gap-1 pt-4"
 						:class="{

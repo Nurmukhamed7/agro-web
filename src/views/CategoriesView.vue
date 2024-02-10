@@ -1,19 +1,11 @@
 <script setup>
-import CardCategories from '@/components/card/CardCategories.vue'
+import SubcategoryList from '@/components/subcategories/SubcategoryList.vue'
 </script>
 
 <template>
-	<CardList></CardList>
-	<div class="flex flex-wrap justify-center gap-3 px-4 md:justify-start">
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
-		<CardCategories />
+	<div class="px-2">
+		<h2 class="text-blue-700 text-body20b mx-2 my-2">Семена овощей</h2>
+		<SubcategoryList></SubcategoryList>
 	</div>
 </template>
 
