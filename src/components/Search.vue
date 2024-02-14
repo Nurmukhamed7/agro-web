@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+// TODO: создать отдельную страницу для поиска где при нажатии на поиск будет выходить товары товары с type subcategory.
+// agroweb.com/search
+</script>
 
 <template>
 	<div>

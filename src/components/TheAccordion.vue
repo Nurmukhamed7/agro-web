@@ -42,9 +42,16 @@ import {
 	FwbAccordionHeader,
 	FwbAccordionPanel,
 } from 'flowbite-vue'
+import { useBucketStore } from '@/stores/bucketStore'
+import { getCategories } from '@/config/api'
+import { onMounted } from 'vue'
 
+const bucketStore = useBucketStore()
+onMounted(async () => {
+	await getCategories()
+})
 const allCategories = dataAgro.reduce((acc, item) => {
-	console.log(item.categories)
+	// console.log(item.categories)
 	if (!acc[item.categories]) {
 		acc[item.categories] = new Set([item.subcategories])
 	} else {
