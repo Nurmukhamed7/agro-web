@@ -1,11 +1,21 @@
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 // TODO: создать отдельную страницу для поиска где при нажатии на поиск будет выходить товары товары с type subcategory.
 // agroweb.com/search
+const searchQuery = ref('')
+const router = useRouter()
+
+const submitSearch = async e => {
+	await router.push({ path: '/search', query: { query: searchQuery.value } })
+	searchQuery.value = ''
+}
 </script>
 
 <template>
 	<div>
-		<form class="m-4">
+		<form class="m-4" @submit.prevent="submitSearch">
 			<label
 				for="default-search"
 				class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -32,6 +42,7 @@
 					</svg>
 				</div>
 				<input
+					v-model="searchQuery"
 					type="search"
 					id="default-search"
 					class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
