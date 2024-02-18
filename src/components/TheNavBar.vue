@@ -36,9 +36,9 @@
 					</svg>
 
 					<div
-						class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
+						class="absolute inline-flex items-center justify-center w-6 h-6 text-body14n text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
 					>
-						8
+						{{ bucketStore.bucketTotalCount }}
 					</div>
 				</button>
 				<button
@@ -92,7 +92,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { useBucketStore } from '@/stores/bucketStore'
 const router = useRouter()
 
 const menuItems = [
@@ -114,6 +114,8 @@ const closeMenu = () => {
 const goToBucket = () => {
 	router.push('/bucket')
 }
+
+const bucketStore = useBucketStore()
 </script>
 
 <style scoped></style>

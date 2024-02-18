@@ -1,20 +1,17 @@
 <template>
 	<fwb-accordion class="my-4">
-		<fwb-accordion-panel
-			v-for="(subcategories, category) in allCategories"
-			:key="category"
-		>
-			<fwb-accordion-header>{{ category }}</fwb-accordion-header>
+		<fwb-accordion-panel v-for="category in data" :key="category.id">
+			<fwb-accordion-header>{{ category.name }}</fwb-accordion-header>
 			<fwb-accordion-content>
 				<router-link
-					to="/categories"
-					v-for="(sub, indexSub) in subcategories"
-					:key="sub"
+					:to="`/${category.name}/${subcategory.id}`"
+					v-for="(subcategory, indexSub) in category.subcategories"
+					:key="subcategory.id"
 				>
 					<div
 						class="flex gap-1 pt-4"
 						:class="{
-							'border-b-2 py-4': indexSub !== subcategories.length - 1,
+							'border-b-2 py-4': indexSub !== category.subcategories.length - 1,
 						}"
 					>
 						<img
@@ -25,7 +22,7 @@
 							alt="product"
 						/>
 						<p class="mb-2 text-gray-500 dark:text-gray-400">
-							{{ sub }}
+							{{ subcategory.name }}
 						</p>
 					</div>
 				</router-link>
@@ -35,7 +32,6 @@
 </template>
 
 <script setup>
-import dataAgro from './../dataAgro'
 import {
 	FwbAccordion,
 	FwbAccordionContent,
@@ -44,24 +40,11 @@ import {
 } from 'flowbite-vue'
 import { useBucketStore } from '@/stores/bucketStore'
 import { getCategories } from '@/config/api'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const bucketStore = useBucketStore()
+const data = ref([])
 onMounted(async () => {
-	await getCategories()
+	data.value = await getCategories()
 })
-const allCategories = dataAgro.reduce((acc, item) => {
-	// console.log(item.categories)
-	if (!acc[item.categories]) {
-		acc[item.categories] = new Set([item.subcategories])
-	} else {
-		acc[item.categories].add(item.subcategories)
-	}
-
-	return acc
-}, {})
-
-for (const category in allCategories) {
-	allCategories[category] = Array.from(allCategories[category])
-}
 </script>

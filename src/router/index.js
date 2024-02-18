@@ -16,17 +16,13 @@ const router = createRouter({
 			],
 		},
 		{
-			path: '/categories',
-			name: 'categories',
-			component: () => import('../views/CategoriesView.vue'),
+			path: '/:slug/:id',
+			name: 'products',
+			component: () => import('../views/ProductsView.vue'),
+			props: true,
 		},
 		{
-			path: '/subcategories',
-			name: 'subcategories',
-			component: () => import('../views/SubcategoriesView.vue'),
-		},
-		{
-			path: '/subcategories/product/1',
+			path: '/:slug/:subId/:productId',
 			name: 'product detail',
 			component: () => import('../views/ProductDetail.vue'),
 		},

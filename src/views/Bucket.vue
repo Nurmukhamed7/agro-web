@@ -56,4 +56,4 @@ import BucketItem from '@/components/bucket/BucketItem.vue'
 import { FwbInput } from 'flowbite-vue'
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

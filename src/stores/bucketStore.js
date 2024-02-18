@@ -44,6 +44,7 @@ export const useBucketStore = defineStore('bucket', () => {
 
 		bucket.value.count -= 1
 		bucket.value.totalPrice -= item.price || 0
+		console.log(bucket.value)
 	}
 
 	// создать полное удаление товара из корзины
