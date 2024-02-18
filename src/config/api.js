@@ -21,6 +21,21 @@ export const getCategories = async () => {
 }
 
 // getSubcategories тут будет getPorudctsBySubId тоже самое только без params
+export const getProductsBySubId = async id => {
+	try {
+		const response = await api.get(`/api/product/?subcategory_id=${id}`)
+		console.log(response.data)
+		return response.data
+	} catch (error) {
+		console.error(
+			'Error fetching subcategories:',
+			error.response ? error.response.data : error.message
+		)
+
+		return null
+	}
+}
+
 export const getProducts = async id => {
 	try {
 		const response = await api.get('/api/product/', {

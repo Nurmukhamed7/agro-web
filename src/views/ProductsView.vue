@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import FilterList from '@/components/filters/FilterList.vue'
 import CardItem from '@/components/card/CardItem.vue'
 import { useBucketStore } from '@/stores/bucketStore'
-import { getProducts } from '@/config/api'
+import { getProducts, getProductsBySubId } from '@/config/api'
 import { useRoute } from 'vue-router'
 
 const products = ref([])
@@ -11,7 +11,7 @@ const products = ref([])
 const route = useRoute()
 
 onMounted(async () => {
-	products.value = await getProducts(+route.params.id)
+	products.value = await getProductsBySubId(+route.params.id)
 })
 </script>
 

@@ -31,6 +31,11 @@ const router = createRouter({
 			name: 'bucket',
 			component: () => import('../views/Bucket.vue'),
 		},
+		// {
+		// 	path: '/all-products',
+		// 	name: 'products',
+		// 	component: () => import('../views/AllProducts.vue'),
+		// },
 		{
 			path: '/search',
 			name: 'search',

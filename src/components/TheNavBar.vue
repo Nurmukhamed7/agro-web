@@ -97,8 +97,9 @@ const router = useRouter()
 
 const menuItems = [
 	{ name: 'Главная', path: '/' },
-	{ name: 'Категории', path: '/categories' },
-	{ name: 'Субкатегории', path: '/subcategories' },
+	{ name: 'Все товары', path: '/all-products' },
+	// { name: 'Категории', path: '/categories' },
+	// { name: 'Субкатегории', path: '/subcategories' },
 ]
 
 const menuOpen = ref(false)
