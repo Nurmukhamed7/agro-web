@@ -1,13 +1,16 @@
 <template>
-	<div>
+	<div v-if="bucketStore.bucket.count > 0">
 		<div class="">
 			<h1 class="mb-10 text-center text-head36b font-bold">Корзина</h1>
 			<div
 				class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
 			>
 				<div class="rounded-lg md:w-2/3">
-					<BucketItem />
-					<BucketItem />
+					<BucketItem
+						v-for="product in bucketStore.bucket.items"
+						:key="product.id"
+						:product="product"
+					/>
 				</div>
 				<!-- Sub total -->
 				<div
@@ -16,7 +19,7 @@
 					<div class="mb-2 flex justify-between">
 						<fwb-input
 							type="name"
-							v-model="name"
+							v-model="clientName"
 							placeholder="Иван"
 							label="Ваше имя"
 						/>
@@ -24,7 +27,7 @@
 					<div class="mb-2 flex justify-between">
 						<fwb-input
 							type="number"
-							v-model="phoneNumber"
+							v-model="clientPhone"
 							placeholder="8-777-777-77-77"
 							label="Ваш номер телефона"
 						/>
@@ -49,11 +52,22 @@
 			</div>
 		</div>
 	</div>
+	<h1 v-else class="mb-10 text-center text-head36b font-bold">
+		Ваша корзина пустая
+	</h1>
 </template>
 
 <script setup>
 import BucketItem from '@/components/bucket/BucketItem.vue'
 import { FwbInput } from 'flowbite-vue'
+import { useBucketStore } from '@/stores/bucketStore'
+import { ref } from 'vue'
+
+const bucketStore = useBucketStore()
+console.log(bucketStore.bucket.items)
+
+const clientName = ref('')
+const clientPhone = ref('')
 </script>
 
 <style scoped></style>

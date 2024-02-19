@@ -1,5 +1,5 @@
 <template>
-	<fwb-accordion class="my-4">
+	<fwb-accordion class="m-4">
 		<fwb-accordion-panel v-for="category in data" :key="category.id">
 			<fwb-accordion-header>{{ category.name }}</fwb-accordion-header>
 			<fwb-accordion-content>

@@ -44,10 +44,19 @@ export const useBucketStore = defineStore('bucket', () => {
 
 		bucket.value.count -= 1
 		bucket.value.totalPrice -= item.price || 0
-		console.log(bucket.value)
+		// console.log(bucket.value)
 	}
 
 	// создать полное удаление товара из корзины
+	function deleteItemFromBucket(item) {
+		if (item.id in bucket.value.items) {
+			const itemCount = bucket.value.items[item.id].count
+			bucket.value.totalPrice -=
+				parseFloat(bucket.value.items[item.id].item.price) * itemCount || 0
+			delete bucket.value.items[item.id]
+			bucket.value.count -= itemCount
+		}
+	}
 
 	return {
 		bucket,
@@ -55,6 +64,7 @@ export const useBucketStore = defineStore('bucket', () => {
 		bucketTotalPrice,
 		addToBucket,
 		removeFromBucket,
+		deleteItemFromBucket,
 	}
 })
 // хранить для корзины Pinia
