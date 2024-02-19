@@ -33,14 +33,16 @@
 						/>
 					</div>
 					<div class="mb-2 flex justify-between">
-						<p class="text-gray-700">Товаров:</p>
-						<p class="text-gray-700">12 шт.</p>
+						<p class="text-gray-700">Всего товаров:</p>
+						<p class="text-gray-700">{{ bucketStore.bucketTotalCount }} шт.</p>
 					</div>
 					<hr class="my-4" />
 					<div class="flex justify-between">
 						<p class="text-lg font-bold">Итого</p>
 						<div class="">
-							<p class="mb-1 text-lg font-bold">134.98 тг.</p>
+							<p class="mb-1 text-lg font-bold">
+								{{ bucketStore.bucketTotalPrice }} тг.
+							</p>
 						</div>
 					</div>
 					<button
