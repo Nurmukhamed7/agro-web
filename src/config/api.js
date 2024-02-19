@@ -8,7 +8,7 @@ const api = axios.create({
 export const getCategories = async () => {
 	try {
 		const response = await api.get('/api/category/')
-		console.log(response.data)
+		// console.log(response.data)
 		return response.data
 	} catch (error) {
 		console.error(
@@ -20,11 +20,11 @@ export const getCategories = async () => {
 	}
 }
 
-// getSubcategories тут будет getPorudctsBySubId тоже самое только без params
+// getSubcategories тут будет getProductsBySubId тоже самое только без params
 export const getProductsBySubId = async id => {
 	try {
 		const response = await api.get(`/api/product/?subcategory_id=${id}`)
-		console.log(response.data)
+		// console.log(response.data)
 		return response.data
 	} catch (error) {
 		console.error(
@@ -36,14 +36,10 @@ export const getProductsBySubId = async id => {
 	}
 }
 
-export const getProducts = async id => {
+export const getProducts = async () => {
 	try {
-		const response = await api.get('/api/product/', {
-			params: {
-				subcategory: id,
-			},
-		})
-		console.log(response.data)
+		const response = await api.get('/api/product')
+		// console.log(response.data)
 		return response.data
 	} catch (error) {
 		console.error(
@@ -58,7 +54,7 @@ export const getProducts = async id => {
 export const getProductByID = async id => {
 	try {
 		const response = await api.get(`/api/product/${id}`)
-		console.log(response.data)
+		// console.log(response.data)
 		return response.data
 	} catch (error) {
 		console.error(

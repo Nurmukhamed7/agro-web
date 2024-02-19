@@ -25,17 +25,19 @@ const router = createRouter({
 			path: '/:slug/:subId/:productId',
 			name: 'product detail',
 			component: () => import('../views/ProductDetail.vue'),
+			props: true,
 		},
 		{
 			path: '/bucket',
 			name: 'bucket',
 			component: () => import('../views/Bucket.vue'),
 		},
-		// {
-		// 	path: '/all-products',
-		// 	name: 'products',
-		// 	component: () => import('../views/AllProducts.vue'),
-		// },
+		{
+			path: '/all-products',
+			name: 'allProducts',
+			component: () => import('../views/AllProducts.vue'),
+			props: true,
+		},
 		{
 			path: '/search',
 			name: 'search',

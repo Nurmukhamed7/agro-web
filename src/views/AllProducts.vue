@@ -1,32 +1,44 @@
+<script setup>
+import { computed, onMounted, ref } from 'vue'
+import FilterList from '@/components/filters/FilterList.vue'
+import CardItem from '@/components/card/CardItem.vue'
+import { useBucketStore } from '@/stores/bucketStore'
+import { getProducts, getCategories } from '@/config/api'
+
+const products = ref([])
+const categories = ref([])
+
+const categoryMap = computed(() => {
+	const map = new Map()
+	categories.value.forEach(category => {
+		category.subcategories.forEach(subcategory => {
+			console.log(subcategory)
+			map.set(subcategory.id, category.name) // Используйте category.slug вместо name, если у вас есть slug
+		})
+	})
+	console.log(map)
+	return map
+})
+
+onMounted(async () => {
+	categories.value = await getCategories()
+	products.value = await getProducts()
+})
+</script>
+
 <template>
 	тут будут все товары
-	<!-- <div class="px-2">
+	<div class="px-2">
 		<FilterList />
 		<div class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-6">
 			<CardItem
 				v-for="product in products"
 				:key="product.id"
 				:product="product"
+				:slug="categoryMap.get(product.subcategory)"
 			></CardItem>
 		</div>
-	</div> -->
+	</div>
 </template>
-
-<script setup>
-// import { onMounted, ref } from 'vue'
-// import FilterList from '@/components/filters/FilterList.vue'
-// import CardItem from '@/components/card/CardItem.vue'
-// import { useBucketStore } from '@/stores/bucketStore'
-// import { getProducts } from '@/config/api'
-// import { useRoute } from 'vue-router'
-
-// const products = ref([])
-
-// const route = useRoute()
-
-// onMounted(async () => {
-// 	products.value = await getProducts(+route.params.id)
-// })
-</script>
 
 <style scoped></style>
