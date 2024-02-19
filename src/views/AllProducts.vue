@@ -12,11 +12,10 @@ const categoryMap = computed(() => {
 	const map = new Map()
 	categories.value.forEach(category => {
 		category.subcategories.forEach(subcategory => {
-			console.log(subcategory)
-			map.set(subcategory.id, category.name) // Используйте category.slug вместо name, если у вас есть slug
+			map.set(subcategory.id, category.name)
 		})
 	})
-	console.log(map)
+	// console.log(map)
 	return map
 })
 

@@ -8,11 +8,13 @@
 				class="absolute inset-0"
 			>
 			</router-link>
-			<img
-				:src="props.product.photo"
-				:alt="props.product.name"
-				class="w-full rounded-[12px] object-contain object-center"
-			/>
+			<div class="h-32 md:h-48 overflow-hidden rounded-[12px]">
+				<img
+					:src="props.product.photo"
+					:alt="props.product.name"
+					class="w-full h-full object-cover object-center"
+				/>
+			</div>
 			<div class="flex flex-col gap-[4px] px-[8px]">
 				<p class="text-head28m text-blue-700">
 					{{ props.product.price }}
