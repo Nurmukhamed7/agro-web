@@ -1,12 +1,12 @@
 <template>
 	<section class="m-auto max-w-1180 lg:px-[16px] xl:px-0">
-		<div class="px-2 text-body16b lg:mb-[18px] lg:justify-start">
-			<router-link
-				:to="`/${route.params.slug}/${+route.params.subId}/`"
+		<div class="px-2 text-body16b lg:mb-[18px] lg:justify-start mt-3">
+			<button
 				class="rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px]"
+				@click="goBack"
 			>
 				Вернуться к товарам
-			</router-link>
+			</button>
 		</div>
 		<section
 			class="product flex flex-col gap-[20px] rounded-[20px] lg:flex-row lg:gap-[34px] lg:border lg:border-neutral-10 lg:px-[20px] lg:py-[22px] mb-10"
@@ -78,16 +78,20 @@
 <script setup>
 import { getProductByID } from '@/config/api'
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useBucketStore } from '@/stores/bucketStore'
 const productDetail = ref([])
 
 const route = useRoute()
+const router = useRouter()
+
 console.log(route)
 const id = +route.params.productId
 onMounted(async () => {
 	productDetail.value = await getProductByID(id)
 })
+
+const goBack = () => router.go(-1)
 
 const bucketStore = useBucketStore()
 </script>

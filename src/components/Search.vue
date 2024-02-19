@@ -2,13 +2,11 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-// TODO: создать отдельную страницу для поиска где при нажатии на поиск будет выходить товары товары с type subcategory.
-// agroweb.com/search
 const searchQuery = ref('')
 const router = useRouter()
 
-const submitSearch = async e => {
-	await router.push({ path: '/search', query: { query: searchQuery.value } })
+function submitSearch() {
+	router.push({ path: '/search', query: { query: searchQuery.value } })
 	searchQuery.value = ''
 }
 </script>

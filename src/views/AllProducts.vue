@@ -1,34 +1,22 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
-import FilterList from '@/components/filters/FilterList.vue'
+import { onMounted, ref } from 'vue'
 import CardItem from '@/components/card/CardItem.vue'
-import { useBucketStore } from '@/stores/bucketStore'
-import { getProducts, getCategories } from '@/config/api'
+import { getProducts } from '@/config/api'
+import Search from '@/components/Search.vue'
+import { useCategoryMap } from '@/hooks/useCategoryMap'
 
 const products = ref([])
-const categories = ref([])
-
-const categoryMap = computed(() => {
-	const map = new Map()
-	categories.value.forEach(category => {
-		category.subcategories.forEach(subcategory => {
-			map.set(subcategory.id, category.name)
-		})
-	})
-	// console.log(map)
-	return map
-})
+const { initCategories, categoryMap } = useCategoryMap()
 
 onMounted(async () => {
-	categories.value = await getCategories()
+	await initCategories()
 	products.value = await getProducts()
 })
 </script>
 
 <template>
-	тут будут все товары
 	<div class="px-2">
-		<FilterList />
+		<Search />
 		<div class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-6">
 			<CardItem
 				v-for="product in products"
