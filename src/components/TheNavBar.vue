@@ -36,6 +36,7 @@
 					</svg>
 
 					<div
+						v-if="bucketStore.bucketTotalCount > 0"
 						class="absolute inline-flex items-center justify-center w-6 h-6 text-body14n text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
 					>
 						{{ bucketStore.bucketTotalCount }}
@@ -87,17 +88,23 @@
 			</div>
 		</div>
 	</nav>
+	<div class="fixed top-10 left-1/2 -translate-x-1/2 z-50 min-w-max">
+		<Toast v-if="changedbucketTotalCount"></Toast>
+	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useBucketStore } from '@/stores/bucketStore'
+import Toast from '@/components/ui/Toast.vue'
+
 const router = useRouter()
 
 const menuItems = [
 	{ name: 'Главная', path: '/' },
 	{ name: 'Все товары', path: '/all-products' },
+	{ name: 'Корзина', path: '/bucket' },
 ]
 
 const menuOpen = ref(false)
@@ -111,10 +118,28 @@ const closeMenu = () => {
 }
 
 const goToBucket = () => {
+	closeMenu()
 	router.push('/bucket')
 }
 
 const bucketStore = useBucketStore()
+
+const changedbucketTotalCount = ref(false)
+watch(
+	() => bucketStore.bucketTotalCount,
+	(newCount, oldCount) => {
+		if (newCount > oldCount) {
+			triggerAnimation()
+		}
+	}
+)
+
+function triggerAnimation() {
+	changedbucketTotalCount.value = true
+	setTimeout(() => {
+		changedbucketTotalCount.value = false
+	}, 1500) // Сброс анимации через 0.5 секунды
+}
 </script>
 
 <style scoped></style>
