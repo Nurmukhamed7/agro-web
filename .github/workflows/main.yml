@@ -1,0 +1,46 @@
+name: barbershop
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16.x] 
+
+    steps:
+      - name: Git clone my repo
+        uses : actions/checkout@v1
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Remove package-lock
+        run : rm package-lock.json
+        
+      - name: Install node/modules
+        run : npm install
+
+      - name: List files
+        run : ls -la
+        
+      - name: Build the project
+        run : npm run build
+
+      - name: Connect to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: '185.129.49.235'
+          username: 'root'
+          password: 'Hello7+'
+          port: "22"
+          script: |
+            cd /var/www/agro-web
+            git pull
+            npm install
+            pm2 start "npm run dev" --name agro-web
