@@ -46,6 +46,7 @@
 						</div>
 					</div>
 					<button
+						@click="submitOrder"
 						class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
 					>
 						Заказать
@@ -64,12 +65,37 @@ import BucketItem from '@/components/bucket/BucketItem.vue'
 import { FwbInput } from 'flowbite-vue'
 import { useBucketStore } from '@/stores/bucketStore'
 import { ref } from 'vue'
+import { sendBucketProduct } from '@/config/api'
 
 const bucketStore = useBucketStore()
 console.log(bucketStore.bucket.items)
 
 const clientName = ref('')
 const clientPhone = ref('')
+
+const submitOrder = async () => {
+	// Сбор данных для отправки
+	const orderData = {
+		order_items: Object.values(bucketStore.bucket.items).map(
+			({ item, count }) => ({
+				product: item.id,
+				quantity: count,
+			})
+		),
+		name: clientName.value,
+		phone: clientPhone.value,
+	}
+
+	// Вызов API для отправки данных
+	const response = await sendBucketProduct(orderData)
+	if (response) {
+		console.log('Order successful:', response)
+		alert('Заказ успешно отправлен!')
+		// Очистите корзину и сбросьте состояние формы здесь, если необходимо
+	} else {
+		alert('Ошибка при отправке заказа. Пожалуйста, попробуйте снова.')
+	}
+}
 </script>
 
 <style scoped></style>

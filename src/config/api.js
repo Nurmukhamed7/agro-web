@@ -51,6 +51,21 @@ export const getProducts = async () => {
 	}
 }
 
+export const sendBucketProduct = async data => {
+	try {
+		const response = await api.post('/api/order/', data)
+		// console.log(response.data)
+		return response.data
+	} catch (error) {
+		console.error(
+			'Error fetching subcategories:',
+			error.response ? error.response.data : error.message
+		)
+
+		return null
+	}
+}
+
 export const getProductByID = async id => {
 	try {
 		const response = await api.get(`/api/product/${id}`)
