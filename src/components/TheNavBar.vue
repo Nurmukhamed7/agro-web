@@ -11,7 +11,7 @@
 				/>
 				<span
 					class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-					>Flowbite</span
+					>AgroWeb</span
 				>
 			</router-link>
 			<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -98,8 +98,6 @@ const router = useRouter()
 const menuItems = [
 	{ name: 'Главная', path: '/' },
 	{ name: 'Все товары', path: '/all-products' },
-	// { name: 'Категории', path: '/categories' },
-	// { name: 'Субкатегории', path: '/subcategories' },
 ]
 
 const menuOpen = ref(false)
