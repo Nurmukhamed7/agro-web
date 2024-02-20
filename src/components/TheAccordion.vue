@@ -1,7 +1,9 @@
 <template>
 	<fwb-accordion class="m-4">
 		<fwb-accordion-panel v-for="category in data" :key="category.id">
-			<fwb-accordion-header>{{ category.name }}</fwb-accordion-header>
+			<fwb-accordion-header class="text-body18b">{{
+				category.name
+			}}</fwb-accordion-header>
 			<fwb-accordion-content>
 				<router-link
 					:to="`/${category.name}/${subcategory.id}`"
@@ -14,13 +16,13 @@
 							'border-b-2 py-4': indexSub !== category.subcategories.length - 1,
 						}"
 					>
-						<img
+						<!-- <img
 							class="mb-2"
 							src="/images/apple.png"
 							width="24"
 							height="24"
 							alt="product"
-						/>
+						/> -->
 						<p class="mb-2 text-gray-500 dark:text-gray-400">
 							{{ subcategory.name }}
 						</p>

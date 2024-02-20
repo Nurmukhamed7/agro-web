@@ -16,9 +16,7 @@
 				/>
 			</div>
 			<div class="flex flex-col gap-[4px] px-[8px]">
-				<p class="text-head28m text-blue-700">
-					{{ props.product.price }}
-				</p>
+				<p class="text-head28m text-blue-700">{{ props.product.price }} тг.</p>
 				<h2 class="text-neutral-100 text-body16b">{{ props.product.name }}</h2>
 				<div class="flex flex-col gap-[10px] text-body12m text-neutral-60">
 					<p class="truncate">{{ props.product.description }}</p>
@@ -31,8 +29,10 @@
 					<button
 						@click="bucketStore.addToBucket(product)"
 						class="w-full rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px] z-10"
+						:class="{ 'bg-red-700 ': props.product.count == 0 }"
+						:disabled="props.product.count == 0"
 					>
-						В корзину
+						{{ props.product.count == 0 ? 'Нет в наличии' : 'В корзину' }}
 					</button>
 				</div>
 			</div>
@@ -50,8 +50,6 @@ const props = defineProps({
 })
 
 const bucketStore = useBucketStore()
-// console.log(props.product)
-//TODO: text-overflow: elipsis
 </script>
 
 <style></style>

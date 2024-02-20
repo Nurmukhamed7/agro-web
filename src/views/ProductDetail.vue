@@ -34,8 +34,10 @@
 					<button
 						class="w-desktop rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px]"
 						@click="bucketStore.addToBucket(productDetail)"
+						:class="{ 'bg-red-700 ': productDetail.count == 0 }"
+						:disabled="productDetail.count == 0"
 					>
-						В корзину
+						{{ productDetail.count == 0 ? 'Нет в наличии' : 'В корзину' }}
 					</button>
 				</div>
 				<div
@@ -50,24 +52,24 @@
 						<div>Производитель</div>
 						<div>: {{ productDetail.manifacturor }}</div>
 					</div>
-					<div
+					<!-- <div
 						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
 					>
 						<div>Фасовка</div>
 						//TODO:добавить фасовку
 						<div>: 1000 семян</div>
-					</div>
+					</div> -->
 					<div
 						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
 					>
-						<div>Описание</div>
+						<div>Краткое описание</div>
 						<div>: {{ productDetail.description }}</div>
 					</div>
 					<div
 						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
 					>
-						<div>Доп информация</div>
-						<div>: описание к доп информации</div>
+						<div>Полное описание</div>
+						<div>: {{ productDetail.add_info }}</div>
 					</div>
 				</div>
 			</div>

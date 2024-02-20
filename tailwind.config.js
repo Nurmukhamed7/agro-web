@@ -54,6 +54,7 @@ export default {
 			body16n: ['16px', { lineHeight: '24px', fontWeight: '400' }],
 			body16m: ['16px', { lineHeight: '24px', fontWeight: '500' }],
 			body16b: ['16px', { lineHeight: '24px', fontWeight: '700' }],
+			body18b: ['18px', { lineHeight: '26px', fontWeight: '700' }],
 			body20n: ['20px', { lineHeight: '28px', fontWeight: '400' }],
 			body20m: ['20px', { lineHeight: '28px', fontWeight: '500' }],
 			body20b: ['20px', { lineHeight: '28px', fontWeight: '700' }],

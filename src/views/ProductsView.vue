@@ -5,6 +5,7 @@ import CardItem from '@/components/card/CardItem.vue'
 import { useBucketStore } from '@/stores/bucketStore'
 import { getProducts, getProductsBySubId } from '@/config/api'
 import { useRoute } from 'vue-router'
+import Search from '@/components/Search.vue'
 
 const products = ref([])
 
@@ -18,7 +19,8 @@ onMounted(async () => {
 
 <template>
 	<div class="px-2">
-		<FilterList />
+		<!-- <FilterList /> -->
+		<Search />
 		<div class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-6">
 			<CardItem
 				v-for="product in products"

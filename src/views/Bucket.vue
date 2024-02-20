@@ -68,7 +68,6 @@ import { ref } from 'vue'
 import { sendBucketProduct } from '@/config/api'
 
 const bucketStore = useBucketStore()
-console.log(bucketStore.bucket.items)
 
 const clientName = ref('')
 const clientPhone = ref('')
