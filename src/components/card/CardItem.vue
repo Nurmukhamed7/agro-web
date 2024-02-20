@@ -31,8 +31,10 @@
 					<button
 						@click="bucketStore.addToBucket(product)"
 						class="w-full rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px] z-10"
+						:class="{ 'bg-red-700 ': props.product.count == 0 }"
+						:disabled="props.product.count == 0"
 					>
-						В корзину
+						{{ props.product.count == 0 ? 'Нет в наличии' : 'В корзину' }}
 					</button>
 				</div>
 			</div>
@@ -50,8 +52,6 @@ const props = defineProps({
 })
 
 const bucketStore = useBucketStore()
-// console.log(props.product)
-//TODO: text-overflow: elipsis
 </script>
 
 <style></style>

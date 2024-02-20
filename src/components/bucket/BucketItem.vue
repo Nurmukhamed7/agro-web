@@ -3,7 +3,7 @@
 		class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
 	>
 		<div
-			class="w-[279px] h-[251px] md:w-[230px] md:h-36 object-cover overflow-hidden rounded-lg"
+			class="w-full h-[251px] md:w-[230px] md:h-36 object-cover overflow-hidden rounded-lg"
 		>
 			<img
 				:src="props.product.item.photo"
@@ -35,11 +35,13 @@
 						>
 						<div class="relative flex items-center">
 							<button
+								:disabled="productCount <= 1"
 								@click="bucketStore.removeFromBucket(props.product.item)"
 								type="button"
 								id="decrement-button"
 								data-input-counter-decrement="counter-input"
 								class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+								:class="{ 'opacity-50': productCount <= 1 }"
 							>
 								<svg
 									class="w-2.5 h-2.5 text-gray-900 dark:text-white"
@@ -67,11 +69,13 @@
 								required
 							/>
 							<button
+								:disabled="isDisabled"
 								@click="bucketStore.addToBucket(props.product.item)"
 								type="button"
 								id="increment-button"
 								data-input-counter-increment="counter-input"
 								class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+								:class="{ 'opacity-50': isDisabled }"
 							>
 								<svg
 									class="w-2.5 h-2.5 text-gray-900 dark:text-white"
@@ -105,17 +109,32 @@
 
 <script setup>
 import { useBucketStore } from '@/stores/bucketStore'
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { getProducts } from '@/config/api'
 
 const props = defineProps({
 	product: Object,
 })
 
 const bucketStore = useBucketStore()
+const availableCount = ref(0)
 
 const productCount = computed(() => {
 	const itemId = props.product.item.id
 	return bucketStore.bucket.items[itemId]?.count || 0
+})
+
+onMounted(async () => {
+	const products = await getProducts()
+	const countFromData = products.find(item => item.id === props.product.item.id)
+	if (countFromData) availableCount.value = countFromData.count
+	// если товар добавили в корзину и потом на сервере убрали его, надо убрать его из корзины
+	if (countFromData.count === 0)
+		bucketStore.deleteItemFromBucket(props.product.item)
+})
+
+const isDisabled = computed(() => {
+	return productCount.value >= availableCount.value
 })
 </script>
 

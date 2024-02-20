@@ -22,6 +22,7 @@ const fetchProducts = async () => {
 		product =>
 			product.description.toLowerCase().includes(queryLower) ||
 			product.name.toLowerCase().includes(queryLower) ||
+			product.manifacturor.toLowerCase().includes(queryLower) ||
 			(product.add_info && product.add_info.toLowerCase().includes(queryLower))
 	)
 }
