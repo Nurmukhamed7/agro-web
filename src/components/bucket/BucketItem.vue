@@ -60,6 +60,7 @@
 								</svg>
 							</button>
 							<input
+								:disabled="true"
 								type="text"
 								id="counter-input"
 								data-input-counter
