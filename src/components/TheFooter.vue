@@ -1,24 +1,32 @@
 <template>
-	<fwb-footer>
-		<fwb-footer-copyright
-			by="Flowbite™"
-			href="https://flowbite.com/"
-			copyright-message="All Rights Reserved."
-		/>
-		<fwb-footer-link-group>
-			<fwb-footer-link href="#"> About </fwb-footer-link>
-			<fwb-footer-link href="#"> Privacy Policy </fwb-footer-link>
-			<fwb-footer-link href="#"> Licensing </fwb-footer-link>
-			<fwb-footer-link href="#"> Contact </fwb-footer-link>
-		</fwb-footer-link-group>
-	</fwb-footer>
+	<footer
+		class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800"
+	>
+		<span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+			>© 2024
+			<a href="https://flowbite.com/" class="hover:underline">AgroWeb™</a>. All
+			Rights Reserved.
+		</span>
+		<ul
+			class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
+		>
+			<li
+				v-for="item in menuItems"
+				:key="item.path"
+				class="mr-4 md:mr-6 last:mr-0"
+			>
+				<router-link :to="item.path" class="hover:underline">{{
+					item.name
+				}}</router-link>
+			</li>
+		</ul>
+	</footer>
 </template>
 
 <script setup>
-import {
-	FwbFooter,
-	FwbFooterCopyright,
-	FwbFooterLink,
-	FwbFooterLinkGroup,
-} from 'flowbite-vue'
+const menuItems = [
+	{ name: 'Главная', path: '/' },
+	{ name: 'Все товары', path: '/all-products' },
+	{ name: 'Корзина', path: '/bucket' },
+]
 </script>
