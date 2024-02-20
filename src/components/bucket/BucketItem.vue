@@ -2,15 +2,22 @@
 	<div
 		class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
 	>
-		<img
-			src="https://kubnews.ru/upload/resize_cache/webp/iblock/651/800_533_2/wiz1gp7z1q7tsmcs3bfhrs6125plqjuv.webp"
-			alt="product-image"
-			class="w-full rounded-lg sm:w-40"
-		/>
+		<div
+			class="w-[279px] h-[251px] md:w-[230px] md:h-36 object-cover overflow-hidden rounded-lg"
+		>
+			<img
+				:src="props.product.item.photo"
+				alt="product-image"
+				class="w-full rounded-lg sm:w-40 object-cover object-center"
+			/>
+		</div>
 		<div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
 			<div class="mt-5 sm:mt-0 flex flex-col justify-between">
-				<h2 class="text-lg font-bold text-gray-900">Название товара</h2>
+				<h2 class="text-lg font-bold text-gray-900">
+					{{ props.product.item.name }}
+				</h2>
 				<button
+					@click="bucketStore.deleteItemFromBucket(props.product.item)"
 					class="w-full rounded-[8px] bg-red-700 text-white px-[10px] py-[6px] z-10"
 				>
 					Удалить товар
@@ -28,6 +35,7 @@
 						>
 						<div class="relative flex items-center">
 							<button
+								@click="bucketStore.removeFromBucket(props.product.item)"
 								type="button"
 								id="decrement-button"
 								data-input-counter-decrement="counter-input"
@@ -55,10 +63,11 @@
 								data-input-counter
 								class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center"
 								placeholder=""
-								value="12"
+								:value="productCount"
 								required
 							/>
 							<button
+								@click="bucketStore.addToBucket(props.product.item)"
 								type="button"
 								id="increment-button"
 								data-input-counter-increment="counter-input"
@@ -83,14 +92,31 @@
 						</div>
 					</form>
 				</div>
-				<div class="flex items-center space-x-4">
-					<p class="text-sm">25.000 тг.</p>
+				<div class="flex flex-col items-center space-x-4">
+					<p class="text-sm">Розничная: {{ props.product.item.price }} тг.</p>
+					<p class="text-sm">
+						Оптовая: {{ props.product.item.discounted_price }} тг.
+					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useBucketStore } from '@/stores/bucketStore'
+import { computed } from 'vue'
+
+const props = defineProps({
+	product: Object,
+})
+
+const bucketStore = useBucketStore()
+
+const productCount = computed(() => {
+	const itemId = props.product.item.id
+	return bucketStore.bucket.items[itemId]?.count || 0
+})
+</script>
 
 <style lang="scss" scoped></style>

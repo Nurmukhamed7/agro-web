@@ -16,19 +16,16 @@ const router = createRouter({
 			],
 		},
 		{
-			path: '/categories',
-			name: 'categories',
-			component: () => import('../views/CategoriesView.vue'),
+			path: '/:slug/:id',
+			name: 'products',
+			component: () => import('../views/ProductsView.vue'),
+			props: true,
 		},
 		{
-			path: '/subcategories',
-			name: 'subcategories',
-			component: () => import('../views/SubcategoriesView.vue'),
-		},
-		{
-			path: '/subcategories/product/1',
+			path: '/:slug/:subId/:productId',
 			name: 'product detail',
 			component: () => import('../views/ProductDetail.vue'),
+			props: true,
 		},
 		{
 			path: '/bucket',
@@ -36,9 +33,15 @@ const router = createRouter({
 			component: () => import('../views/Bucket.vue'),
 		},
 		{
-			path: '/admin',
-			name: 'admin',
-			component: () => import('../views/AdminView.vue'),
+			path: '/all-products',
+			name: 'allProducts',
+			component: () => import('../views/AllProducts.vue'),
+			props: true,
+		},
+		{
+			path: '/search',
+			name: 'search',
+			component: () => import('../views/SearchView.vue'),
 		},
 		{
 			path: '/:catchAll(.*)',
