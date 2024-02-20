@@ -1,4 +1,4 @@
-name: barbershop
+name: agro
 
 on:
   push:
@@ -28,6 +28,8 @@ jobs:
           password: 'Hello7+'
           port: "22"
           script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd /var/www/agro-web
             git pull
             npm install
