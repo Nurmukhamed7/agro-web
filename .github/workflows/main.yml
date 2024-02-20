@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [16.x] 
+        node: [18.x] 
 
     steps:
       - name: Git clone my repo
@@ -19,18 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Remove package-lock
-        run : rm package-lock.json
-        
-      - name: Install node/modules
-        run : npm install
-
-      - name: List files
-        run : ls -la
-        
-      - name: Build the project
-        run : npm run build
 
       - name: Connect to server
         uses: appleboy/ssh-action@master
