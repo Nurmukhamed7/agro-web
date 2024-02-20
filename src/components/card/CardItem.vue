@@ -16,9 +16,7 @@
 				/>
 			</div>
 			<div class="flex flex-col gap-[4px] px-[8px]">
-				<p class="text-head28m text-blue-700">
-					{{ props.product.price }}
-				</p>
+				<p class="text-head28m text-blue-700">{{ props.product.price }} тг.</p>
 				<h2 class="text-neutral-100 text-body16b">{{ props.product.name }}</h2>
 				<div class="flex flex-col gap-[10px] text-body12m text-neutral-60">
 					<p class="truncate">{{ props.product.description }}</p>
