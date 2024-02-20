@@ -1,7 +1,9 @@
 <template>
 	<fwb-accordion class="m-4">
 		<fwb-accordion-panel v-for="category in data" :key="category.id">
-			<fwb-accordion-header>{{ category.name }}</fwb-accordion-header>
+			<fwb-accordion-header class="text-body18b">{{
+				category.name
+			}}</fwb-accordion-header>
 			<fwb-accordion-content>
 				<router-link
 					:to="`/${category.name}/${subcategory.id}`"

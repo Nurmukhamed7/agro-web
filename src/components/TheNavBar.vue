@@ -5,13 +5,13 @@
 		<div class="container flex flex-wrap justify-between items-center mx-auto">
 			<router-link to="/" class="flex items-center">
 				<img
-					src="https://flowbite.com/docs/images/logo.svg"
+					src="/src/assets/corn.png"
 					class="mr-3 h-6 sm:h-10"
-					alt="Flowbite Logo"
+					alt="AlmatyAgro"
 				/>
 				<span
 					class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-					>AgroWeb</span
+					>AlmatyAgro</span
 				>
 			</router-link>
 			<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
