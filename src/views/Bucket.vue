@@ -26,10 +26,12 @@
 					</div>
 					<div class="mb-2 flex justify-between">
 						<fwb-input
-							type="number"
+							type="text"
 							v-model="clientPhone"
-							placeholder="8-777-777-77-77"
+							placeholder="701 777 77 77"
 							label="Ваш номер телефона"
+							v-maska
+							data-maska="+7 ### ### ## ##"
 						/>
 					</div>
 					<div class="mb-2 flex justify-between">
@@ -66,6 +68,7 @@ import { FwbInput } from 'flowbite-vue'
 import { useBucketStore } from '@/stores/bucketStore'
 import { ref } from 'vue'
 import { sendBucketProduct } from '@/config/api'
+import { vMaska } from 'maska'
 
 const bucketStore = useBucketStore()
 
