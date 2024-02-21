@@ -47,9 +47,13 @@
 							</p>
 						</div>
 					</div>
+					<div v-if="isShowSpinner" class="flex justify-center">
+						<fwb-spinner size="10" />
+					</div>
 					<button
+						v-else
 						@click="submitOrder"
-						class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+						class="mt-6 w-full rounded-md bg-blue-600 py-1.5 font-medium text-blue-50 hover:bg-blue-500"
 					>
 						Заказать
 					</button>
@@ -63,6 +67,7 @@
 </template>
 
 <script setup>
+import { FwbSpinner } from 'flowbite-vue'
 import BucketItem from '@/components/bucket/BucketItem.vue'
 import { FwbInput } from 'flowbite-vue'
 import { useBucketStore } from '@/stores/bucketStore'
@@ -74,10 +79,10 @@ const bucketStore = useBucketStore()
 
 const clientName = ref('')
 const clientPhone = ref('')
+const isShowSpinner = ref(false)
 
-const submitOrder = async () => {
-	// Сбор данных для отправки
-	const orderData = {
+const createOrderData = () => {
+	return {
 		order_items: Object.values(bucketStore.bucket.items).map(
 			({ item, count }) => ({
 				product: item.id,
@@ -87,15 +92,22 @@ const submitOrder = async () => {
 		name: clientName.value,
 		phone: clientPhone.value,
 	}
+}
 
-	// Вызов API для отправки данных
-	const response = await sendBucketProduct(orderData)
-	if (response) {
-		console.log('Order successful:', response)
-		alert('Заказ успешно отправлен!')
-		// Очистите корзину и сбросьте состояние формы здесь, если необходимо
-	} else {
-		alert('Ошибка при отправке заказа. Пожалуйста, попробуйте снова.')
+const submitOrder = async () => {
+	const orderData = createOrderData()
+
+	isShowSpinner.value = true
+	try {
+		const response = await sendBucketProduct(orderData)
+		console.log('Order successful:', response.name)
+		isShowSpinner.value = false
+		alert(`${response.name}, Ваш заказ успешно отправлен!`)
+		bucketStore.clearBucket()
+	} catch (error) {
+		isShowSpinner.value = false
+		console.error('Order submission failed:', error)
+	} finally {
 	}
 }
 </script>

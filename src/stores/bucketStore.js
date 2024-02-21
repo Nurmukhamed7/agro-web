@@ -58,6 +58,15 @@ export const useBucketStore = defineStore('bucket', () => {
 		}
 	}
 
+	// чистим localStorage после отправки
+	function clearBucket() {
+		bucket.value = {
+			count: 0,
+			totalPrice: 0,
+			items: {},
+		}
+	}
+
 	return {
 		bucket,
 		bucketTotalCount,
@@ -65,6 +74,7 @@ export const useBucketStore = defineStore('bucket', () => {
 		addToBucket,
 		removeFromBucket,
 		deleteItemFromBucket,
+		clearBucket,
 	}
 })
 // хранить для корзины Pinia

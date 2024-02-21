@@ -3,82 +3,38 @@ import axios from 'axios'
 const api = axios.create({
 	baseURL: 'http://185.129.49.235',
 })
-// использовать  вместо trycatch в interceptors
+
+api.interceptors.response.use(
+	response => {
+		return response.data
+	},
+	error => {
+		console.error(
+			'API call error:',
+			error.response ? error.response.data : error.message
+		)
+		return Promise.reject(error)
+	}
+)
 
 export const getCategories = async () => {
-	try {
-		const response = await api.get('/api/category/')
-		// console.log(response.data)
-		return response.data
-	} catch (error) {
-		console.error(
-			'Error fetching categories:',
-			error.response ? error.response.data : error.message
-		)
-
-		return null
-	}
+	return api.get('/api/category/')
 }
 
-// getSubcategories тут будет getProductsBySubId тоже самое только без params
 export const getProductsBySubId = async id => {
-	try {
-		const response = await api.get(`/api/product/?subcategory_id=${id}`)
-		// console.log(response.data)
-		return response.data
-	} catch (error) {
-		console.error(
-			'Error fetching subcategories:',
-			error.response ? error.response.data : error.message
-		)
-
-		return null
-	}
+	return api.get(`/api/product/?subcategory_id=${id}`)
 }
 
 export const getProducts = async () => {
-	try {
-		const response = await api.get('/api/product')
-		// console.log(response.data)
-		return response.data
-	} catch (error) {
-		console.error(
-			'Error fetching subcategories:',
-			error.response ? error.response.data : error.message
-		)
-
-		return null
-	}
+	return api.get('/api/product')
 }
 
 export const sendBucketProduct = async data => {
-	try {
-		const response = await api.post('/api/order/', data)
-		// console.log(response.data)
-		return response.data
-	} catch (error) {
-		console.error(
-			'Error fetching subcategories:',
-			error.response ? error.response.data : error.message
-		)
-
-		return null
-	}
+	return api.post('/api/order/', data)
 }
 
 export const getProductByID = async id => {
-	try {
-		const response = await api.get(`/api/product/${id}`)
-		// console.log(response.data)
-		return response.data
-	} catch (error) {
-		console.error(
-			'Error fetching subcategories:',
-			error.response ? error.response.data : error.message
-		)
-
-		return null
-	}
+	return api.get(`/api/product/${id}`)
 }
 
 export default api
