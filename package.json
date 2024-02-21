@@ -14,6 +14,7 @@
     "axios": "^1.6.7",
     "flowbite": "^2.2.1",
     "flowbite-vue": "^0.1.2",
+    "maska": "^2.1.11",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.5",
     "vue": "^3.3.11",

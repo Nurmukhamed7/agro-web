@@ -89,7 +89,11 @@
 		</div>
 	</nav>
 	<div class="fixed top-10 left-1/2 -translate-x-1/2 z-50 min-w-max">
-		<Toast v-if="changedbucketTotalCount"></Toast>
+		<Toast
+			v-if="changedbucketTotalCount"
+			message="Товар добавлен в корзину."
+			type="success"
+		></Toast>
 	</div>
 </template>
 
