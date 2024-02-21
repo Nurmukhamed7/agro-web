@@ -1,19 +1,13 @@
 <script setup>
 import Search from '@/components/Search.vue'
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getProducts } from '@/config/api'
-import { useCategoryMap } from '@/hooks/useCategoryMap'
 import CardItem from '@/components/card/CardItem.vue'
 
 const route = useRoute()
 const searchQuery = ref(route.query.query)
 const filteredProducts = ref([])
-const { initCategories, categoryMap } = useCategoryMap()
-
-onMounted(async () => {
-	initCategories()
-})
 
 const fetchProducts = async () => {
 	const products = await getProducts()
@@ -49,7 +43,6 @@ watch(
 				v-for="product in filteredProducts"
 				:key="product.id"
 				:product="product"
-				:slug="categoryMap.get(product.subcategory)"
 			></CardItem>
 		</div>
 		<p v-else>Ничего не найдено...</p>

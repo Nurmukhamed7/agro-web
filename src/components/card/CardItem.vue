@@ -2,9 +2,7 @@
 	<div class="basis-3/12 rounded-[12px] px-[8px] pb-[20px] pt-[8px] shadow-xl">
 		<div class="flex flex-col gap-[16px] relative">
 			<router-link
-				:to="`/${slug ? slug : route.params.slug}/${
-					props.product.subcategory
-				}/${props.product.id}`"
+				:to="`/${props.product.category_info.name}/${props.product.subcategory}/${props.product.id}`"
 				class="absolute inset-0"
 			>
 			</router-link>
@@ -42,11 +40,8 @@
 
 <script setup>
 import { useBucketStore } from '@/stores/bucketStore'
-import { useRoute } from 'vue-router'
-const route = useRoute()
 const props = defineProps({
 	product: Object,
-	slug: String,
 })
 
 const bucketStore = useBucketStore()
