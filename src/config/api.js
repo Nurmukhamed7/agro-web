@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-	baseURL: 'http://185.129.49.235',
+	baseURL: 'https://www.almatyagro.kz',
 })
 
 api.interceptors.response.use(
