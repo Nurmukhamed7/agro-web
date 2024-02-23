@@ -33,4 +33,5 @@ jobs:
             cd /var/www/agro-web
             git pull
             npm install
+            pm2 delete all
             pm2 start "npm run dev" --name agro-web
