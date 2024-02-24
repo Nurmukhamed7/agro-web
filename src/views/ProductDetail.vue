@@ -46,30 +46,25 @@
 					<div class="text-[18px] font-bold text-neutral-100">О продукте</div>
 				</div>
 				<div class="text-body14m text-neutral-60">
-					<div
-						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
-					>
-						<div>Производитель</div>
-						<div>: {{ productDetail.manifacturor }}</div>
+					<div class="flex flex-col border-b border-neutral-10 py-[12px]">
+						<div><h3 class="font-bold">Производитель:</h3></div>
+						<div>
+							<p class="font-normal">{{ productDetail.manifacturor }}</p>
+						</div>
 					</div>
-					<!-- <div
-						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
-					>
-						<div>Фасовка</div>
-						//TODO:добавить фасовку
-						<div>: 1000 семян</div>
-					</div> -->
-					<div
-						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
-					>
-						<div>Краткое описание</div>
-						<div>: {{ productDetail.description }}</div>
+					<div class="flex flex-col border-b border-neutral-10 py-[12px]">
+						<div><h3 class="font-bold">Краткое описание:</h3></div>
+						<div>
+							<p class="font-normal">{{ productDetail.description }}</p>
+						</div>
 					</div>
-					<div
-						class="grid grid-cols-2 border-b border-neutral-10 px-[11px] py-[12px]"
-					>
-						<div>Полное описание</div>
-						<div>: {{ productDetail.add_info }}</div>
+					<div class="flex flex-col border-b border-neutral-10 py-[12px]">
+						<div>
+							<h3 class="font-bold">Полное описание:</h3>
+						</div>
+						<div>
+							<p class="font-normal">{{ productDetail.add_info }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -87,7 +82,6 @@ const productDetail = ref([])
 const route = useRoute()
 const router = useRouter()
 
-console.log(route)
 const id = +route.params.productId
 onMounted(async () => {
 	productDetail.value = await getProductByID(id)
