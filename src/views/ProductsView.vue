@@ -12,7 +12,6 @@ const products = ref([])
 const route = useRoute()
 
 onMounted(async () => {
-	console.log('ProductsView.vue:', route.params)
 	products.value = await getProductsBySubId(+route.params.id)
 })
 </script>

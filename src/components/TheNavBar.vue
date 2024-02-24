@@ -5,12 +5,12 @@
 		<div class="container flex flex-wrap justify-between items-center mx-auto">
 			<router-link to="/" class="flex items-center">
 				<img
-					src="/src/assets/corn.png"
-					class="mr-3 h-6 sm:h-10"
+					src="/src/assets/watermelon.png"
+					class="mr-2 h-8 sm:h-10"
 					alt="AlmatyAgro"
 				/>
 				<span
-					class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+					class="self-center text-xl font-bold whitespace-nowrap dark:text-white"
 					>AlmatyAgro</span
 				>
 			</router-link>
