@@ -26,7 +26,7 @@
 				<div class="flex flex-col gap-[4px]">
 					<button
 						@click="bucketStore.addToBucket(product)"
-						class="w-full rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px] z-10"
+						class="w-full rounded-[8px] bg-blue-700 text-white px-[10px] py-[6px] z-9"
 						:class="{ 'bg-red-700 ': props.product.count == 0 }"
 						:disabled="props.product.count == 0"
 					>
