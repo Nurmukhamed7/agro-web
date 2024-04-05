@@ -28,13 +28,12 @@ onMounted(async () => {
 
 <template>
 	<div class="px-2">
-		<div class="flex items-center gap-1">
-			<FilterList
-				:products="products"
-				@update:selectedManufacturers="selectedManufacturers = $event"
-			/>
-			<Search class="flex-grow" />
-		</div>
+		<Search />
+		<FilterList
+			:products="products"
+			@update:selectedManufacturers="selectedManufacturers = $event"
+		/>
+
 		<div class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-6">
 			<CardItem
 				v-for="product in filteredProducts"
