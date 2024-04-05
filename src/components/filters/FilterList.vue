@@ -1,52 +1,26 @@
 <template>
-	<div ref="dropdownRef">
-		<button
-			@click="toggleDropdown"
-			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center"
-			type="button"
+	<div>
+		<ul
+			class="grid grid-cols-2 items-center md:grid-cols-5 md:px-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
 		>
-			<svg
-				class="w-6 h-6"
-				aria-hidden="true"
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				fill="none"
-				viewBox="0 0 24 24"
+			<li
+				v-for="manufacturer in uniqueManufactures"
+				:key="manufacturer"
+				class="flex items-center"
 			>
-				<path
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-width="2"
-					d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"
+				<input
+					:id="`checkbox-item-${manufacturer}`"
+					type="checkbox"
+					@change="() => updateSelection(manufacturer)"
+					class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
 				/>
-			</svg>
-		</button>
-		<div
-			v-show="isDropdownVisible"
-			class="z-10 w-auto bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-			style="position: absolute"
-		>
-			<ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200">
-				<li
-					v-for="manufacturer in uniqueManufactures"
-					:key="manufacturer"
-					class="flex items-center"
+				<label
+					:for="`checkbox-item-${manufacturer}`"
+					class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+					>{{ manufacturer }}</label
 				>
-					<input
-						:id="`checkbox-item-${manufacturer}`"
-						type="checkbox"
-						@change="() => updateSelection(manufacturer)"
-						class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-					/>
-					<label
-						:for="`checkbox-item-${manufacturer}`"
-						class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-						>{{ manufacturer }}</label
-					>
-				</li>
-			</ul>
-		</div>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -99,3 +73,9 @@ onUnmounted(() => {
 	window.removeEventListener('click', handleClickOutside)
 })
 </script>
+
+<style scoped>
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+	margin-top: 0;
+}
+</style>
