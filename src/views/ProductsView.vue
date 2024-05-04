@@ -1,11 +1,10 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
-import FilterList from '@/components/filters/FilterList.vue'
 import CardItem from '@/components/card/CardItem.vue'
-import { useBucketStore } from '@/stores/bucketStore'
-import { getProducts, getProductsBySubId } from '@/config/api'
-import { useRoute } from 'vue-router'
+import FilterList from '@/components/filters/FilterList.vue'
 import Search from '@/components/Search.vue'
+import { getProductsBySubId } from '@/config/api'
+import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const products = ref([])
 const selectedManufacturers = ref([])
