@@ -1,6 +1,6 @@
 <script setup>
-import TheNavBar from './components/TheNavBar.vue'
 import TheFooter from './components/TheFooter.vue'
+import TheNavBar from './components/TheNavBar.vue'
 </script>
 
 <template>

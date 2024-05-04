@@ -1,7 +1,9 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
+
 import { vMaska } from 'maska'
+
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
