@@ -1,9 +1,9 @@
 <script setup>
+import CardItem from '@/components/card/CardItem.vue'
 import Search from '@/components/Search.vue'
+import { getProducts } from '@/config/api'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { getProducts } from '@/config/api'
-import CardItem from '@/components/card/CardItem.vue'
 
 const route = useRoute()
 const searchQuery = ref(route.query.query)
@@ -34,7 +34,7 @@ watch(
 <template>
 	<div>
 		<Search />
-		<h1 class="mx-2">Результаты поиска для "{{ searchQuery }}"</h1>
+		<h2 class="mx-2">Результаты поиска для "{{ searchQuery }}"</h2>
 		<div
 			v-if="filteredProducts.length"
 			class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-6"
