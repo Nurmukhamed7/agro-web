@@ -7,12 +7,13 @@
 				<img
 					src="/src/assets/watermelon.png"
 					class="mr-2 h-8 sm:h-10"
-					alt="AlmatyAgro"
+					alt="Almaty Agro"
 				/>
-				<span
+				<h1
 					class="self-center text-xl font-bold whitespace-nowrap dark:text-white"
-					>AlmatyAgro</span
 				>
+					Almaty Agro
+				</h1>
 			</router-link>
 			<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 				<button
@@ -98,10 +99,10 @@
 </template>
 
 <script setup>
+import Toast from '@/components/ui/Toast.vue'
+import { useBucketStore } from '@/stores/bucketStore'
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useBucketStore } from '@/stores/bucketStore'
-import Toast from '@/components/ui/Toast.vue'
 
 const router = useRouter()
 

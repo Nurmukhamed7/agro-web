@@ -21,9 +21,9 @@
 			<div
 				class="right relative rounded-tl-[20px] rounded-tr-[20px] px-[16px] py-[20px] shadow-product-page before:absolute before:left-1/2 before:top-[10px] before:h-[6px] before:w-[40px] before:translate-x-[-50%] before:rounded-[10px] before:bg-neutral-20 lg:w-1/2 lg:pl-0 lg:pt-0 lg:shadow-none lg:before:hidden"
 			>
-				<h1 class="mt-[8px] text-head24b text-neutral-100">
+				<h2 class="mt-[8px] text-head24b text-neutral-100">
 					{{ productDetail.name }}
-				</h1>
+				</h2>
 				<div class="flex mt-[2px] text-body20b text-neutral-80">
 					{{ productDetail.price }} тг. (Оптом:
 					{{ productDetail.discounted_price }} тг.)
@@ -74,9 +74,9 @@
 
 <script setup>
 import { getProductByID } from '@/config/api'
+import { useBucketStore } from '@/stores/bucketStore'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useBucketStore } from '@/stores/bucketStore'
 const productDetail = ref([])
 
 const route = useRoute()

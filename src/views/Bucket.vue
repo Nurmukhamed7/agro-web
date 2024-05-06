@@ -1,6 +1,6 @@
 <template>
 	<div v-if="bucketStore.bucket.count > 0">
-		<h1 class="mb-10 text-center text-head36b font-bold">Корзина</h1>
+		<h2 class="mb-10 text-center text-head36b font-bold">Корзина</h2>
 		<div
 			class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
 		>
@@ -60,7 +60,7 @@
 		</div>
 	</div>
 	<div v-else class="flex flex-col items-center mt-10">
-		<h1 class="mb-10 text-head36b font-bold">Ваша корзина пустая</h1>
+		<h2 class="mb-10 text-head36b font-bold">Ваша корзина пустая</h2>
 		<router-link class="text-blue-500" to="/all-products">
 			<p class="justify-center underline text-head24b">Вернуться к покупкам</p>
 		</router-link>
@@ -68,13 +68,12 @@
 </template>
 
 <script setup>
-import { FwbSpinner } from 'flowbite-vue'
 import BucketItem from '@/components/bucket/BucketItem.vue'
-import { FwbInput } from 'flowbite-vue'
-import { useBucketStore } from '@/stores/bucketStore'
-import { ref } from 'vue'
 import { sendBucketProduct } from '@/config/api'
+import { useBucketStore } from '@/stores/bucketStore'
+import { FwbInput, FwbSpinner } from 'flowbite-vue'
 import { vMaska } from 'maska'
+import { ref } from 'vue'
 
 const bucketStore = useBucketStore()
 
